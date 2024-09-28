@@ -1,50 +1,111 @@
 <template>
-  <div>
-    <h1>Login</h1>
-    <form @submit.prevent="handleSubmit">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form @submit.prevent="submitLogin" class="form-group">
+        <div class="input-box">
+          <input
+            type="email"
+            v-model="email"
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            v-model="password"
+            placeholder="Senha"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <button type="submit" class="btn">Entrar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoginForm', // Nome do componente
   data() {
     return {
-      username: '', // Estado para armazenar o nome de usuário
-      password: ''  // Estado para armazenar a senha
+      email: '',
+      password: ''
     };
   },
   methods: {
-    handleSubmit() {
-      // Lógica para lidar com o envio do formulário
-      console.log('Username:', this.username);
-      console.log('Password:', this.password);
-      // Aqui você pode adicionar a lógica para autenticação, por exemplo
+    submitLogin() {
+      // Lógica de autenticação aqui
+      if (this.email === '' || this.password === '') {
+        alert('Preencha todos os campos');
+        return;
+      }
+
+      console.log('Email:', this.email);
+      console.log('Senha:', this.password);
+
+      // Chamada para a API de autenticação
     }
   }
-}
+};
 </script>
 
 <style scoped>
-/* Estilos do seu componente */
-h1 {
-  font-size: 2em;
-}
-form {
+.login-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
 }
-label {
-  margin-top: 10px;
+
+.login-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-box {
+  margin-bottom: 15px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-bottom-color: green;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: darkgreen;
 }
 </style>

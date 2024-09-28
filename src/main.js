@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import MainComponent from './components/LoginForm.vue'; // Atualize para o novo componente
 
-createApp(App).mount('#app')
+createApp(MainComponent).mount('#app'); // Montar o MainComponent
